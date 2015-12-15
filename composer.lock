@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "49f63cdcac91332e751d0b691203bdd2",
-    "content-hash": "61996de90e808be86533327eb7673f6b",
+    "hash": "e9c7ccf841bb8bfe672cb382c0a637ee",
+    "content-hash": "f29b1735eaccbc76bb9150507ea7d8d7",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -60,6 +60,49 @@
                 "preload"
             ],
             "time": "2015-11-09 22:51:51"
+        },
+        {
+            "name": "danielboendergaard/phantom-pdf",
+            "version": "v0.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/danielboendergaard/phantom-pdf.git",
+                "reference": "7672424d196a294ef5af06d62f2752f729ceba3f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/danielboendergaard/phantom-pdf/zipball/7672424d196a294ef5af06d62f2752f729ceba3f",
+                "reference": "7672424d196a294ef5af06d62f2752f729ceba3f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "symfony/http-foundation": "~2.2",
+                "symfony/process": "~2.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PhantomPdf\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Bøndergaard",
+                    "email": "danielboendergaard@gmail.com"
+                }
+            ],
+            "description": "A Package for generating PDF files using PhantomJS",
+            "keywords": [
+                "html",
+                "laravel",
+                "pdf"
+            ],
+            "time": "2015-09-16 09:13:38"
         },
         {
             "name": "danielstjules/stringy",

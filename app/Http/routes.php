@@ -34,5 +34,5 @@ Route::get('export', function () {
 
     $view = view('pdf-templates.certificate', compact('users'));
 
-    return $view;
+    return PDF::createFromView($view, 'pdf-demo.pdf');
 });
