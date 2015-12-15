@@ -11,6 +11,8 @@
 |
 */
 
+use Symfony\Component\Process\Process;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -35,4 +37,32 @@ Route::get('export', function () {
     $view = view('pdf-templates.certificate', compact('users'));
 
     return PDF::createFromView($view, 'pdf-demo.pdf');
+});
+
+Route::get('screenshot', function (\Illuminate\Http\Request $request) {
+    $args = [
+        base_path('vendor/danielboendergaard/phantom-pdf/bin/phantomjs'),
+        public_path('rasterize.js')
+    ];
+
+    $args[] = $request->get('url') ? : 'http://www.google.com';
+    $args[] = $output = $request->get('output') ? : 'screenshot.jpg';
+
+    if ($request->get('paperformat')) {
+        $args[] = $request->get('paperformat');
+    }
+
+    if ($request->get('zoom')) {
+        $args[] = $request->get('zoom');
+    }
+
+    $command = implode(' ', $args);
+
+    //dd($command);
+
+    $process = new Process($command, public_path());
+    $process->setTimeout(30);
+    $process->run();
+
+    echo '<img src="' . $output . '">';
 });
