@@ -44,7 +44,7 @@ Route::get('screenshot', function (\Illuminate\Http\Request $request) {
         base_path('vendor/danielboendergaard/phantom-pdf/bin/phantomjs'),
         public_path('rasterize.js')
     ];
-
+    
     $args[] = $request->get('url') ? : 'http://www.google.com';
     $args[] = $output = $request->get('output') ? : 'screenshot.jpg';
 
@@ -58,11 +58,16 @@ Route::get('screenshot', function (\Illuminate\Http\Request $request) {
 
     $command = implode(' ', $args);
 
-    //dd($command);
-
-    $process = new Process($command, public_path());
+//    dd($command, public_path());
+    $process = new Process($command, public_path('screenshots'));
     $process->setTimeout(30);
     $process->run();
+    
+    if ($errorOutput = $process->getErrorOutput()) {
+        throw new RuntimeException('PhantomJS: ' . $errorOutput);
+    }
 
-    echo '<img src="' . $output . '">';
+    //rename(storage_path($output), public_path('screenshots/' . $output));
+
+    echo '<img src="' . asset('screenshots/' . $output) . '">';
 });
