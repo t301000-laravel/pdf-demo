@@ -14,3 +14,25 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('test', function () {
+    $users = collect([
+        ['name' => '黃小保'],
+        ['name' => '許小誠'],
+        ['name' => '葉大雄'],
+    ]);
+//    dd($users);
+    return view('pdf-templates.certificate', compact('users'));
+});
+
+Route::get('export', function () {
+    $users = collect([
+        ['name' => '黃小保'],
+        ['name' => '許小誠'],
+        ['name' => '葉大雄'],
+    ]);
+
+    $view = view('pdf-templates.certificate', compact('users'));
+
+    return $view;
+});
